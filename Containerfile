@@ -3,7 +3,7 @@ FROM artixlinux/artixlinux:latest
 
 # 1. Update system and install the absolute core utilities & runit (our init system)
 RUN pacman -Syu --noconfirm && \
-    pacman -S --noconfirm base linux linux-firmware runit elogind-runit \
+    yes | pacman -S mkinitcpio base linux linux-firmware runit elogind-runit \
     nano sudo curl wget networkmanager networkmanager-runit
 
 # 2. Enable 32-bit repositories (Mandatory for Steam)
