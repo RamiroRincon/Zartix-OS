@@ -3,8 +3,8 @@
 if [[ $EUID -ne 0 ]]; then echo "Must run as root (use sudo)"; exit 1; fi
 
 echo "Preparing installer tools..."
-# Changed arch-install-scripts to artix-install-scripts
-pacman -Sy --noconfirm zenity podman artix-install-scripts gptfdisk
+# Removed the phantom package, keeping only what we actually need
+pacman -Sy --noconfirm zenity podman gptfdisk
 
 # 1. UI: Select Disk
 DISK=$(lsblk -dno NAME,SIZE,TYPE | grep disk | zenity --list --title="ZArtix Installer" --text="Select disk to install (WARNING: ERASES ALL DATA):" --column="Disk" --column="Size" --column="Type" --width=400 --height=300 | awk '{print "/dev/"$1}')
@@ -39,7 +39,6 @@ podman rm zartix_extract
 
 # 7. Setup Bootloader
 echo "Setting up bootloader..."
-# Changed arch-chroot to artix-chroot
 artix-chroot /mnt pacman -S --noconfirm grub efibootmgr
 artix-chroot /mnt grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB --removable
 artix-chroot /mnt grub-mkconfig -o /boot/grub/grub.cfg
