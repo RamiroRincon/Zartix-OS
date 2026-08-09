@@ -12,8 +12,10 @@ RUN echo -e "\n[lib32]\nInclude = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf 
 
 # 3. Install KDE Plasma Desktop, Audio, and Gaming tools
 RUN pacman -S --noconfirm plasma-desktop wayland sddm sddm-runit \
-    pipewire pipewire-pulse pipewire-alsa wireplumber \
-    steam gamescope mesa lib32-mesa flatpak
+    pipewire pipewire-pulse pipewire-alsa wireplumber pipewire-jack \
+    steam gamescope mesa lib32-mesa flatpak \
+    noto-fonts-emoji qt6-multimedia-ffmpeg xorg-server xorg-xwayland \
+    vulkan-radeon lib32-vulkan-radeon
 
 # 4. OSTree Immutability Magic 
 # OSTree requires the root folder to be read-only. 
