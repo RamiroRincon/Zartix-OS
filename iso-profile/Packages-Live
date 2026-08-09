@@ -1,0 +1,16 @@
+base
+linux
+runit
+elogind-runit
+networkmanager
+networkmanager-runit
+cage
+wayland
+zenity
+podman
+gptfdisk
+artix-install-scripts
+grub
+efibootmgr
+tar
+rsync
